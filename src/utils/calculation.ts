@@ -15,8 +15,9 @@ export function calculateProfitLoss(
   const totalConcession = estimatedTraffic * avgItemPrice * discountDecimal;
   const inventoryLossCost = estimatedTraffic * avgItemPrice * lossDecimal;
   const materialLossCost = fixedMaterialCost;
+  const totalCost = materialLossCost + inventoryLossCost;
   const activityRevenue = estimatedTraffic * avgItemPrice * (1 - discountDecimal);
-  const activityNetProfit = activityRevenue - materialLossCost - inventoryLossCost;
+  const activityNetProfit = activityRevenue - totalCost;
 
   const normalRevenue = normalTraffic * avgItemPrice * (1 - normalDiscountDecimal);
   const normalLossCost = normalTraffic * avgItemPrice * normalLossDecimal;
@@ -29,6 +30,7 @@ export function calculateProfitLoss(
     totalConcession,
     materialLossCost,
     inventoryLossCost,
+    totalCost,
     activityRevenue,
     activityNetProfit,
     normalRevenue,

@@ -10,6 +10,7 @@ export interface CalculationResult {
   totalConcession: number;
   materialLossCost: number;
   inventoryLossCost: number;
+  totalCost: number;
   activityRevenue: number;
   activityNetProfit: number;
   normalRevenue: number;

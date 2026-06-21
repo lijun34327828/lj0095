@@ -1,11 +1,11 @@
 import React from 'react';
-import { Calculator, TrendingDown, Package, DollarSign, ShoppingCart } from 'lucide-react';
+import { Calculator, TrendingDown, Package, DollarSign, ShoppingCart, Droplets } from 'lucide-react';
 import { DataCard } from './DataCard';
 import { useCalculatorStore } from '@/store/calculator';
 
 export const ResultPanel: React.FC = () => {
   const { result, constraints } = useCalculatorStore();
-  const { totalConcession, materialLossCost, inventoryLossCost, activityNetProfit, activityRevenue } = result;
+  const { totalConcession, materialLossCost, inventoryLossCost, activityNetProfit, activityRevenue, totalCost } = result;
 
   return (
     <div className="space-y-4">
@@ -24,9 +24,25 @@ export const ResultPanel: React.FC = () => {
 
         <DataCard
           label="物料损耗成本"
-          value={materialLossCost + inventoryLossCost}
+          value={materialLossCost}
           format="currency"
           icon={<Package size={18} />}
+        />
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <DataCard
+          label="库存损耗成本"
+          value={inventoryLossCost}
+          format="currency"
+          icon={<Droplets size={18} />}
+        />
+
+        <DataCard
+          label="总成本"
+          value={totalCost}
+          format="currency"
+          icon={<DollarSign size={18} />}
         />
       </div>
 
@@ -62,7 +78,7 @@ export const ResultPanel: React.FC = () => {
           <div className="flex justify-between text-sm pt-2 border-t border-navy-700/50">
             <span className="text-navy-200 font-medium">总成本</span>
             <span className="font-mono text-amber-gold font-bold">
-              ¥{(materialLossCost + inventoryLossCost).toFixed(2)}
+              ¥{totalCost.toFixed(2)}
             </span>
           </div>
         </div>
